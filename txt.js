@@ -1,6 +1,22 @@
-var request = require('request');
+'use strict';
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
+const path = require('path');
 
+let app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+        extended: true
+}));
 
+app.post('/',function(req, res){
+	console.log("bjnjk");
+	console.log(req.body.id);
+	console.log(number_max(req.body.id));
+	//console.log(res.body);
+
+});
 function number_max(n){
 request.get('http://terriblytinytales.com/test.txt', function (error, response, body) {
 	    if (!error && response.statusCode == 200) {
@@ -50,10 +66,37 @@ request.get('http://terriblytinytales.com/test.txt', function (error, response, 
 			});
 
 			// Create a new array with only the first 5 items
-		//	console.log(items.slice(0, n));
-			return items.slice(0,n);
+		 console.log(items.slice(0,n));
 
-		         });
+		 var a = new Array();
+		 a = JSON.stringify(items.slice(0,n));
+		var link = "njvknf/";
+		var final = link +a;
+		console.log(final);
+		});
 }
 
-console.log(number_max(6));
+function callSend(operation){
+        request_1.getAsync({
+                url:operation,
+                method: 'GET'
+        }).then(function(res,err){
+                var body = ''; // Will contain the final response
+                if(err) throw err;
+                if (res.body==='None')
+                {
+                        sendTextMessage(sender,"We are sorry but we currently do not serve in your area. Please try again later.")
+                }
+                else {
+                        var link= "http://genii.ai/activebots/indiansaffronco/payment.html?userid="+sender;
+                        sendButton(sender,["web_url"],'how would you like to pay?',[link],["Payments"],"tall");
+                }
+
+        });
+}
+
+
+
+var server = app.listen(process.env.PORT || 3000, function () {
+        console.log("Listening on port %s", server.address().port);
+});
