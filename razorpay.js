@@ -2,97 +2,61 @@ function done(){
   function getlength(number){
     return number.toString().length;
   }
-  nameUser=document.getElementsByName('name')[0].value;
   phoneUser=Number(document.getElementsByName('phone')[0].value);
-  addUser=document.getElementsByName('address')[0].value;
   //addUser=addUser.replace(\\g, '-');
-  if(nameUser=="" | addUser=="" | phoneUser=="")
-    alert("Fill in the details to proceed.");
-  else if(getlength(phoneUser)!=10){
+  if(phoneUser=="")
     alert("Invald phone number!");
-  }
   else{
-    if(nameUser!="" & addUser!=""){
-      var userData={
-        "name": nameUser,
-        "number": phoneUser,
-        "address": addUser
-      };
-      $.ajax({
-        type: "GET",
-        url: nodejsScript+"/confirm",
-        data: {
-          'Id': uid,
-          "name": nameUser,
-          "number": phoneUser,
-          "address": addUser
-        },
-        success: function(data){
-          console.log("ID sent!");
-          console.log(data);
-        },
-        error: function(data){
-          console.log('Nope!');
+    $.ajax({
+      type: "GET",
+      url: 'https://7b493696.ngrok.io/',
+      data: {
+        "id": phoneUser,
+      },
+      success: function(data){
+        console.log(data);
+        data=JSON.parse(data);
+        data=JSON.parse(data);
+        var x=document.getElementById('tableGen');
+        x.innerHTML='<tr><th>word</th><th>freq</th></tr>';
+        var y=document.getElementById('top');
+        y.style.display='none';
+        for(var k in data){
+          console.log(data[k]);
+          x.innerHTML+="<tr><td>"+data[k][0]+"</td><td>"+data[k][1]+"</td>";
         }
-      });
-      userData=JSON.stringify(userData);
-      console.log(userData);
-      if(document.getElementById('saveDefault').checked==true){
-        $.ajax({
-          type: "GET",
-          url: redisDb+"/set_user_default/"+uid+"/"+userData,
-          success: function(data){
-            console.log("Success!");
-          },
-          error: function(data){
-            console.log('Nope!');
-          }
-        });
+        getURL();
+      },
+      error: function(data){
+        console.log(data);
       }
-      alert("Close the webview to proceed! You'll receive a confirmation message soon.");
-      document.getElementsByTagName("BODY")[0].style.display="none";
-    }
-  }
+    });
+  //  alert("Close the webview to proceed! You'll receive a confirmation message soon.");
 
+  }
 }
 
 var price, nameUser, phoneUser, addUser;
 
-function amount(){
-  $.ajax({
-    type: "GET",
-    url: "https://73e13d7a.ngrok.io",
-    success: function(data){
-      data=JSON.parse(data);
-      price=data["total"];
-      console.log(price);
-      document.getElementById('amt').innerHTML="&#8377;"+price;
-    },
-    error: function(data){
-      console.log('Nope!');
+function getURL(){
+  var str = window.location.href;
+  uid="";
+  for (var i = 0; i<=str.length; i++){
+    //console.log(str.charAt(i));
+    if (str.charAt(i) == "="){
+      for ( var j=i+1; j<str.length; j++){
+        if(str.charAt(j)=="#")
+          break;
+        uid = uid + str.charAt(j);
+      }
+      console.log(uid);
+      break;
     }
-  });
+  }
+  console.log(str);
+  console.log(uid);
 }
 
-function userData(){
-  $.ajax({
-    type: "GET",
-    url: redisDb+"/get_user_default/"+uid,
-    success: function(data){
-      console.log(data);
-      data=JSON.parse(data);
-      document.getElementsByName('name')[0].value=data['name'];
-      //console.log(data['name']);
-      if(data['number']!=undefined)
-        document.getElementsByName('phone')[0].value=data['number'];
-      if(data['address']!=undefined)
-        document.getElementsByName('address')[0].value=data['address'];
-    },
-    error: function(data){
-      console.log('Nope!');
-    }
-  });
-}
 /*
 function razorpay(){
   var options = {
@@ -159,4 +123,3 @@ function razorpay(){
   rzp1.open();
 }
 */
-razorpay.js
