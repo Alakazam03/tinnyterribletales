@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Baba da Dhaba</title>
+  <!--Mobile Specific Meta Tag-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<!-- Body -->
+<body class="page-preloading">
+
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+    <table  id='tableGen'>
+
+    </table>
+    <!-- Main Content Wrapper -->
+    <main id="top" class="content-wrapper">
+      <!-- Data API:
+        data-loop="true/false" enable/disable looping
+        data-autoplay="true/false" enable/disable carousel autoplay
+        data-interval="3000" autoplay interval timeout in miliseconds
+        Simply add necessary data attribute to the ".hero-carousel" with appropriate value to adjust carousel functionality.
+       -->
+      <!-- Content Wide -->
+      <section class="container-fluid padding-top-3x">
+
+        <section id="cart" class="container padding-top-1x padding-bottom">
+
+          <h1 class="space-top-half">
+          <span>Terrible</span><span class="text-gray"> Tiny</span><span> Tales</span>
+          </h1>
+            <div class="row padding-top">
+
+              <!-- Checkout Form -->
+              <div class="col-sm-8 padding-bottom">
+
+                <div class="row">
+                  <!--input type="text" class="form-control" name="name" placeholder="Name" required/-->
+                  <input type="tel" class="form-control" name="phone" placeholder="Enter the number" required/>
+                  <!--input type="text" class="form-control" name="address" placeholder="Address" required/-->
+                <p class="text-gray text-sm"></p>
+                </div>
+              </div><!-- .col-sm-8 -->
+
+            <!-- Sidebar -->
+            <div class="col-md-3 col-md-offset-1 col-sm-4 padding-bottom-2x">
+              <aside>
+
+
+
+
+                <button onclick="done()" />Confirm</a>
+                </div>
+
+                <!---a onclick="alert('Close webview to proceed.')" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Paytm</a-->
+                <!--a onclick="done()" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Cash on Delivery</a-->
+              </aside>
+            </div><!-- .col-md-3.col-sm-4 -->
+          </div><!-- .row -->
+        </section><!-- .container -->
+
+      </section><!-- .container-fluid -->
+    </main><!-- .content-wrapper -->
+
+  </div><!-- .page-wrapper -->
+
+  <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="razorpay.js"></script>
+
+</body><!-- <body> -->
+</html>
