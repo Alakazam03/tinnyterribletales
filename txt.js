@@ -24,14 +24,15 @@ app.get('/',function(req, res){
 	console.log("bjnjk");
 	console.log(req.query.id);
   console.log(number_max(req.query.id));
-  var res;
-  number_max(4).then(fun => {
-    res = fun
-    console.log("gkhkjhkj"+res);
+  var resq;
+  number_max(req.query.id).then(fun => {
+    resq = fun
+    console.log("gkhkjhkj"+resq);
+    resq=JSON.stringify(resq);
+    res.writeHead(res.statusCode);
+    res.write(resq);
+    res.end();
   })
-  res.writeHead(res.statusCode);
-  res.write("121");
-  res.end();
   //console.log(fxn());
 });
 
@@ -52,7 +53,7 @@ function callSend(operation){
 var x;
 function number_max(operation){
 
-        console.log(JSON.parse(operation));
+        //console.log(JSON.parse(operation));
         return request_1.getAsync({
                 url:'http://terriblytinytales.com/test.txt',
                 method: 'GET'
@@ -111,20 +112,18 @@ function number_max(operation){
 
               var a = new Array();
               a = JSON.stringify(items.slice(0,operation));
-               var link = "https://6bb7d26f.ngrok.io/";
+              // var link = "https://6bb7d26f.ngrok.io/";
             //   console.log(final);
                //x=a;
                //console.log(x);
-               var final = link +a;
+               var final = a;
                x=final;//final;
                //callSend(final);
                console.log("csdcd"+x);
                return x;
              });
-              console.log(x);
 
         }
-console.log("x"+x);
 
 
 
