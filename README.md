@@ -1,6 +1,5 @@
 # tinnyterribletales
 
-index.html
 
 A normal submit button is made from which razorpay.js is getting the value. After this the value is sent to NodeJS(webhook) 
 which access online(ttt txt file) and using map(dictionary) returns the frequency of words occurring in sorted manner.
