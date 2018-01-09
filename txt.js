@@ -21,39 +21,17 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',function(req, res){
-	console.log("bjnjk");
-	console.log(req.query.id);
-  console.log(number_max(req.query.id));
-  var resq;
+  var result;
   number_max(req.query.id).then(fun => {
-    resq = fun
-    console.log("gkhkjhkj"+resq);
-    resq=JSON.stringify(resq);
+    result = fun
+    result=JSON.stringify(result);
     res.writeHead(res.statusCode);
-    res.write(resq);
+    res.write(result);
     res.end();
   })
-  //console.log(fxn());
 });
 
-
-function callSend(operation){
-        console.log(JSON.parse(operation));
-        request_1.getAsync({
-                url:operation,
-                method: 'POST'
-        }).then(function(res,err){
-                var body = ''; // Will contain the final response
-                if(err) throw err;
-                console.log(res);
-
-        });
-}
-
-var x;
 function number_max(operation){
-
-        //console.log(JSON.parse(operation));
         return request_1.getAsync({
                 url:'http://terriblytinytales.com/test.txt',
                 method: 'GET'
@@ -106,21 +84,10 @@ function number_max(operation){
                      items.sort(function(first, second) {
                        return second[1] - first[1];
                });
-
-               // Create a new array with only the first 5 items
              // console.log(items.slice(0,n));
-
               var a = new Array();
               a = JSON.stringify(items.slice(0,operation));
-              // var link = "https://6bb7d26f.ngrok.io/";
-            //   console.log(final);
-               //x=a;
-               //console.log(x);
-               var final = a;
-               x=final;//final;
-               //callSend(final);
-               console.log("csdcd"+x);
-               return x;
+              return a;
              });
 
         }
