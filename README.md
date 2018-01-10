@@ -20,3 +20,7 @@ libraries used(NodeJS):
 Handled cases:
   Invalid value of n(handled at front-end)
   Failure of ending value to backend(using NodeJs, it's nature)
+  
+  
+  
+hosted on aws at http://52.66.187.96/  
